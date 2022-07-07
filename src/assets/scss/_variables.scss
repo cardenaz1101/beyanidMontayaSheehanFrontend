@@ -1,0 +1,17 @@
+$white: #ffffff;
+$black: #000000;
+$gray: #6e6e6e;
+$light-grey: #aaaaaa;
+$orange: #f16f03;
+$green-w: #00bb2d;
+$blue-f: #3b5998;
+
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xxl: 1440px,
+        xxxl: 1600px
+) !default;

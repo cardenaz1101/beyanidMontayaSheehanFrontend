@@ -1,0 +1,11 @@
+footer {
+    background-color: $gray;
+    padding: 3rem 8rem;
+
+    @import "text";
+    @import "link";
+
+    @include media-breakpoint-down (md) {
+        padding: 3rem 2rem;
+    }
+}

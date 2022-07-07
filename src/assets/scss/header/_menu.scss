@@ -1,0 +1,41 @@
+.container-menu {
+    width: 70%;
+
+    ul {
+        display: flex;
+        justify-content: end;
+        margin: 0;
+        li {
+            list-style: none;
+            margin: 0 2rem;
+            a {
+                text-transform: uppercase;
+                text-decoration: none;
+                color: $gray;
+
+                &.router-link-exact-active {
+                    color: $orange;
+                }
+
+                &:hover {
+                    color: $orange;
+                }
+            }
+        }
+    }
+
+    @include media-breakpoint-down (md) {
+        display: none;
+    }
+}
+
+.menu-mobile {
+
+    display: none;
+
+    @include media-breakpoint-down (md) {
+        display: block;
+        color: $orange;
+        font-size: 1.5rem;
+    }
+}

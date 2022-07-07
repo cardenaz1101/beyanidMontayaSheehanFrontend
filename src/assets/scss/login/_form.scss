@@ -1,0 +1,19 @@
+.container-form {
+    margin-bottom: 3rem;
+    .btn-login {
+        background-color: $orange;
+        border: none;
+        width: 100%;
+        padding: 1rem;
+        color: $white;
+    }
+
+    .link-password {
+        color: $gray;
+        margin-top: 1rem;
+
+        &:hover {
+            color: $orange;
+        }
+    }
+}

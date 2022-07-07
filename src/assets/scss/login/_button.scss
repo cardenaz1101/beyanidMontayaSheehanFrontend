@@ -1,0 +1,21 @@
+.container-btn {
+    margin-bottom: 3rem !important;
+
+    .btn-login {
+        background-color: $white;
+        padding: 1.5rem 1rem;
+        text-align: center;
+        color: $orange;
+        border: none;
+    
+        &-active {
+            color: $white;
+            background-color: $orange;
+        }
+    
+        &:hover {
+            color: $white;
+            background-color: $orange;
+        }
+    }
+}

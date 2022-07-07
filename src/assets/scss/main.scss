@@ -1,0 +1,50 @@
+@import "~bootstrap";
+
+@import "variables";
+@import "typography";
+@import "global";
+
+@import "header/header.scss";
+@import "social-networks/social-networks.scss";
+@import "lobby/lobby.scss";
+@import "login/login.scss";
+@import "home/home.scss";
+@import "footer/footer.scss";
+@import "index/index.scss";
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat Regular";
+    color: $gray;
+}
+
+#app {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100vh;
+    
+}
+
+.container-general {
+    padding: 10rem 8rem 3rem 8rem;
+
+    @include media-breakpoint-down(lg) {
+        padding: 10rem 6rem 3rem 6rem;
+    }
+
+    @include media-breakpoint-down(sm) {
+        padding: 10rem 2rem 3rem 2rem;
+    }
+}
+
+.btn-orange {
+    background-color: $orange;
+    border: none;
+    width: 100%;
+    padding: 1rem;
+    color: $white;
+}

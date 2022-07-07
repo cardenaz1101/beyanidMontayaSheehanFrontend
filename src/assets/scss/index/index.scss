@@ -1,0 +1,17 @@
+.column {
+    margin-bottom: 3rem;
+
+    @include media-breakpoint-down(sm) {
+        padding: 0 !important;
+        margin-bottom: 2rem;
+    }
+
+    .type-document-box {
+        border: 1px solid black;
+        width: 100%;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
