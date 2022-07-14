@@ -6,7 +6,6 @@
         <div class="m-0 mb-3 row">
             <div class="col-12 mb-3">
                 <input type="text" placeholder="Nombres" class="form-control" v-model="data.firstName">
-                <input v-validate="'numeric'" data-vv-as="field" name="numeric_field" type="text">
             </div>
             <div class="col-12 mb-3">
                 <input type="text" placeholder="Apellidos" class="form-control" v-model="data.lastName">
@@ -75,24 +74,12 @@ export default {
                 this.error.push("Ingrese contraseña")
             }
             
-            if (this.error.length > 0) {
-                console.log("Errores");
-                console.log(this.error);
-            } else {
-                const res = await Api().post('/api/users/signUp', this.data).then()
-
+            if (this.error.length == 0) {
+                const res = await Api().post('users/signUp', this.data).then()
                 if (res.data.id) {
                     this.$router.push('/login')
                 }
-
-                // this.data.firstName = "";
-                // this.data.lastName = "";
-                // this.data.email = "";
-                // this.data.password = "";
-                // this.data.document = "";
-                // this.data.phone = "";
             }
-            
         }
     }
 }

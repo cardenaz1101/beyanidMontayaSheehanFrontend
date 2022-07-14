@@ -7,13 +7,19 @@
             <h5 class="d-flex justify-content-center flex-column">Beyanid Montoya Sheehan <br><span>Oficina Legal</span></h5>
         </div>
         <div class="container-menu">
-            <ul>
+            <ul v-if="pr == 1">
                 <li>
                     <router-link to="/">Home</router-link> 
                 </li>
                 <li>
                     <router-link to="/login">Login</router-link>
                 </li>
+            </ul>
+            <ul v-if="pr == 2">
+                <li>Hola</li>
+                <li>
+                    <button v-on:click="logout()">Cerrar sesión</button>
+                </li> 
             </ul>
         </div>
         <i class="fa-solid fa-bars menu-mobile"></i>
@@ -39,7 +45,7 @@
         <div class="row m-0">
             <div class="col-12 col-lg-6 d-flex justify-content-center">
                 <ul class="m-0 p-0">
-                    <li><a href="#" class="text-footer link-footer">Blog</a></li>
+                    <li><a href="#" class="text-footer link-footer">{{ $t('lang.notification.msg') }}</a></li>
                     <li><a href="#" class="text-footer link-footer">Contactanos</a></li>
                     <li><a href="#" class="text-footer link-footer">Política de privacidad</a></li>
                     <li><a href="#" class="text-footer link-footer">Terminos y condiciones</a></li>
@@ -61,7 +67,25 @@
 
 <script>
 export default {
-
+    data() {
+        return {
+            pr : 1
+        }
+    },
+    methods: {
+        logout() {
+            localStorage.removeItem('token')
+            this.$router.push('/')
+        }
+    },
+    created() {
+        console.log('Hola')
+        if (localStorage.getItem('token') != null) {
+            this.pr = 2
+        } else {
+            this.pr = 1
+        }
+    }
 }
 </script>
 

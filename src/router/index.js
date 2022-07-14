@@ -2,7 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Lobby from '../views/LobbyView.vue'
 import Error from '../views/ErrorView.vue'
 import Login from '../views/LoginView.vue'
-import Index from '../views/IndexView.vue'
+import typeDocuments from '../views/IndexView.vue'
+import typeDocument from '../views/SingleView.vue'
 
 
 const routes = [
@@ -22,10 +23,15 @@ const routes = [
     component: Login
   },
   {
-    path: '/Index',
-    name: 'index',
-    component: Index,
+    path: '/typeDocuments',
+    name: 'typeDocuments',
+    component: typeDocuments,
     meta: {protectedRoute: true}
+  },
+  {
+    path: '/typeDocument/:id',
+    name: 'typeDocument',
+    component: typeDocument,
   }
 ]
 

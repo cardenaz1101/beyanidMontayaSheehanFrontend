@@ -50,6 +50,9 @@ export default {
             this.current = 2;
             this.btn_login_active = true;
         }
+    },
+    created() {
+
     }
 }
 </script>
