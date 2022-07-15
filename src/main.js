@@ -1,31 +1,24 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import axios from 'axios'
-import VueAxios from 'vue-axios'
-import { useValidateForm } from 'vee-validate'
-
-//Idiomas
-// import VueI18n from 'vue-i18n'
-// import en from './lang/en_US'
-// import es from './lang/es_ES'
+// import axios from 'axios'
+// import VueAxios from 'vue-axios'
+// import { useValidateForm } from 'vee-validate'
+import { createI18n } from 'vue-i18n/index'
 
 
-createApp(App).use(router, axios, VueAxios, useValidateForm).mount('#app')
+const i18n = createI18n({
+  legacy: false,
+  locale: "ja",
+  messages: {
+    en: require('@/lang/en'),
+    es: require('./lang/es.json')
+  }
+});
 
-// const i18n = new VueI18n({
-//     locale: 'es',
-//     messages: {
-//         en: {
-//             lang: en
-//         },
-//         es: {
-//             lang: es
-//         }
-//     }
-// })
+const app = createApp(App)
 
-App({
-    render: h => h(App),
-    // i18n
-  })
+app.use(i18n)
+app.use(router)
+// app.use(axios)
+app.mount('#app')

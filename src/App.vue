@@ -1,5 +1,6 @@
 <template>
-  <header class="d-flex">
+<div>
+    <header class="d-flex">
         <div class="container-logo d-flex">
             <router-link to="/">
                 <img src="./assets/images/logo.png" class="logo-header me-3" alt="">
@@ -9,10 +10,16 @@
         <div class="container-menu">
             <ul v-if="pr == 1">
                 <li>
-                    <router-link to="/">Home</router-link> 
+                    <router-link to="/">{{ t("header.home", {}, { locale: lang }) }}</router-link> 
                 </li>
                 <li>
-                    <router-link to="/login">Login</router-link>
+                    <router-link to="/login">{{ t("header.login", {}, { locale: lang }) }}</router-link>
+                </li>
+                <li>
+                    <select v-model="lang">
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                    </select>
                 </li>
             </ul>
             <ul v-if="pr == 2">
@@ -45,7 +52,7 @@
         <div class="row m-0">
             <div class="col-12 col-lg-6 d-flex justify-content-center">
                 <ul class="m-0 p-0">
-                    <li><a href="#" class="text-footer link-footer">{{ $t('lang.notification.msg') }}</a></li>
+                    <li><a href="#" class="text-footer link-footer"></a></li>
                     <li><a href="#" class="text-footer link-footer">Contactanos</a></li>
                     <li><a href="#" class="text-footer link-footer">Política de privacidad</a></li>
                     <li><a href="#" class="text-footer link-footer">Terminos y condiciones</a></li>
@@ -63,14 +70,24 @@
             <p class="text-footer text-center">Todos los derechos reservados - Copyright © 2022</p>
         </div>
     </footer>
+</div>
+
 </template>
 
 <script>
-export default {
+import { useI18n } from 'vue-i18n/index';
+import { defineComponent } from '@vue/runtime-core';
+
+export default defineComponent({
     data() {
         return {
-            pr : 1
+            pr : 1,
+            lang: "es"
         }
+    },
+    setup() {
+        const { t } = useI18n();
+        return { t }
     },
     methods: {
         logout() {
@@ -79,14 +96,13 @@ export default {
         }
     },
     created() {
-        console.log('Hola')
         if (localStorage.getItem('token') != null) {
             this.pr = 2
         } else {
             this.pr = 1
         }
     }
-}
+})
 </script>
 
 <style lang="scss" src="./assets/scss/main.scss"></style>
