@@ -5,28 +5,29 @@
             <router-link to="/">
                 <img src="./assets/images/logo.png" class="logo-header me-3" alt="">
             </router-link>
-            <h5 class="d-flex justify-content-center flex-column">Beyanid Montoya Sheehan <br><span>Oficina Legal</span></h5>
+            <h5 class="d-flex justify-content-center flex-column">Beyanid Montoya Sheehan <br><span>{{ t("logo.office", {}, { locale: lang }) }}</span></h5>
         </div>
         <div class="container-menu">
-            <ul v-if="pr == 1">
-                <li>
-                    <router-link to="/">{{ t("header.home", {}, { locale: lang }) }}</router-link> 
+            <ul>
+                <li v-if="pr == 1" :key="pru">
+                    <router-link class="link" to="/">{{ t("header.home", {}, { locale: lang }) }}</router-link> 
                 </li>
-                <li>
-                    <router-link to="/login">{{ t("header.login", {}, { locale: lang }) }}</router-link>
+                <li v-if="pr == 1" :key="pru">
+                    <router-link class="link" to="/us">{{ t("header.us", {}, { locale: lang }) }}</router-link>
                 </li>
+                <li v-if="pr == 1" :key="pru">
+                    <router-link class="link" to="/login">{{ t("global.login", {}, { locale: lang }) }}</router-link>
+                </li>
+                <li v-if="pr == 2" :key="pru">{{ t("header.greeting", {}, { locale: lang }) }}, Cristian</li>
+                <li v-if="pr == 2" :key="pru">
+                    <button class="link" v-on:click="logout()">{{ t("header.logout", {}, { locale: lang }) }}</button>
+                </li> 
                 <li>
-                    <select v-model="lang">
-                        <option value="en">English</option>
-                        <option value="es">Español</option>
+                    <select class="form-select form-select-sm" v-model="lang">
+                        <option value="en">{{ t("lang.en", {}, { locale: lang }) }}</option>
+                        <option value="es">{{ t("lang.es", {}, { locale: lang }) }}</option>
                     </select>
                 </li>
-            </ul>
-            <ul v-if="pr == 2">
-                <li>Hola</li>
-                <li>
-                    <button v-on:click="logout()">Cerrar sesión</button>
-                </li> 
             </ul>
         </div>
         <i class="fa-solid fa-bars menu-mobile"></i>
@@ -46,7 +47,7 @@
         </a>
     </div>
     <div  class="container-general">
-        <router-view/>
+        <router-view :langg="lang" :key="lang"/>
     </div>
     <footer>
         <div class="row m-0">
@@ -82,7 +83,8 @@ export default defineComponent({
     data() {
         return {
             pr : 1,
-            lang: "es"
+            lang: "es",
+            pru: localStorage.getItem('token')
         }
     },
     setup() {
@@ -92,10 +94,11 @@ export default defineComponent({
     methods: {
         logout() {
             localStorage.removeItem('token')
-            this.$router.push('/')
+            window.location.reload()
+            // this.$router.push('/')
         }
     },
-    created() {
+    mounted() {
         if (localStorage.getItem('token') != null) {
             this.pr = 2
         } else {

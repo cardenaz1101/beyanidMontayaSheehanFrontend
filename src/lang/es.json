@@ -1,6 +1,31 @@
 {
+    "lang": {
+        "es": "Español",
+        "en": "Ingles"
+    },
+
+    "global": {
+        "login": "Iniciar sesión"
+    },
+
     "header": {
         "home": "Inicio",
+        "us": "Nosotros",
+        "logout": "Cerrar sesión",
+        "greeting": "Hola"
+        
+    },
+
+    "logo": {
+        "office": "Oficina legal"
+    },
+
+    "login": {
         "login": "Iniciar sesión"
+    },
+
+    "popup": {
+        "pay": "Realizar pago",
+        "cancel": "Cancelar compra"
     }
 }

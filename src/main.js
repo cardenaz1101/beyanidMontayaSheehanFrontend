@@ -9,7 +9,7 @@ import { createI18n } from 'vue-i18n/index'
 
 const i18n = createI18n({
   legacy: false,
-  locale: "ja",
+  locale: "es",
   messages: {
     en: require('@/lang/en'),
     es: require('./lang/es.json')

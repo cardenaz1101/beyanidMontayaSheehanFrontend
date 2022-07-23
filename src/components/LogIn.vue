@@ -50,7 +50,8 @@ export default {
                     await Api().post('users/login', this.data).then((res) => {this.token = res.data})
                     if (this.token) {
                         localStorage.setItem('token', this.token)
-                        this.$router.push('/typeDocuments')
+                        window.location.reload()
+                        // this.$router.push('/typeDocuments')
                     }
                 }
 

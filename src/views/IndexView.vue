@@ -16,11 +16,23 @@
 <script>
 
 import TypeDocuments from '@/components/TypeDocuments.vue'
+import { defineComponent } from '@vue/runtime-core'
+import { useI18n } from 'vue-i18n/index'
 
-export default {
+
+export default defineComponent({
+
+    props: {
+        langg: String
+    },
+    setup() {
+        const { t } = useI18n();
+        return { t }
+    },
     data () {
         return {
-            array: []
+            array: [],
+            lang: this.langg
         }
     }, 
     components: {
@@ -29,9 +41,11 @@ export default {
     methods: {
         async getTypeDocuments (data) {
             this.array = data
+            
         }
-    }
-}
+        
+    },
+})
 </script>
 
 <style>

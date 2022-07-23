@@ -8,7 +8,7 @@
                 <router-link to="/">
                     <img src="../assets/images/logo.png" class="logo" alt="">
                 </router-link>
-                <h1 class="title-lobby">¡Crea fácilmente <br><span>tus documentos legales!</span></h1>
+                <h1 class="title-lobby">¡Diligencia fácilmente <br><span>tus documentos legales!</span></h1>
                 <p>Un formulario muy intuitivo te guiará en la redacción de tus documentos</p>
             </div>
         </div>
@@ -59,7 +59,7 @@
 <script>
 
 export default {
-
+    
 }
 
 </script>

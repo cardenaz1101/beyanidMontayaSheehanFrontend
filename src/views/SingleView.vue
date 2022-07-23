@@ -7,32 +7,86 @@
             </div>
         </div>
         <div v-if="documents.length == 0">
-            <h1>No hay documentos</h1>
+            <h1 class="text-center">No hay documentos</h1>
         </div>
-    </div>
+        <div class="row m-0 d-flex justify-content-center align-items-center">
+            <div class="col-4">
+                <div class="box-create-orden">
+                    <div @click="createOrden(); isOpen = true" class="link-create-orden">
+                        <div class="container-icon">
+                            <i class="fa-solid fa-dollar-sign icon"></i>
+                        </div>
+                        <img src="../assets/images/descarga.png" alt="" class="image-create-orden">
+                    </div>
+                    <h3 class="title-create-orden">Asesoria de {{name}}</h3>
+                </div>
+            </div>
+        </div>
 
+    </div>
+    <PopUp :open="isOpen" @close="isOpen = false" :link="paymentLink" :key="paymentLink" :price="price" :name="name" :langg="lang">
+        <div class="column col-6">         
+            <img src="../assets/images/descarga.png" alt="" class="image-popup">
+        </div>
+    </PopUp>
 </template>
 
 <script>
 import Api from '@/services/Api'
+import PopUp from '@/components/PopUp.vue'
+import { ref } from 'vue'
+import { defineComponent } from '@vue/runtime-core'
+import { useI18n } from 'vue-i18n/index'
 
-export default {
+export default defineComponent({
+
+    props: {
+        langg: String
+    },
+    setup () {
+        const isOpen = ref(false)
+        const { t } = useI18n();
+
+        return { isOpen, t }
+    },
     data() {
         return {
             id: null,
             name: null,
-            documents: []
+            documents: [],
+            paymentLink: null,
+            price: null,
+            lang: this.langg
         }
     },
+    components: {
+        PopUp
+    },
+    methods: {
+        async createOrden () 
+        {
+            const res =  await Api().get('paymentGateways/createPayment/'+ this.id, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            })
+            console.log(res);
+            this.paymentLink = res.data.href
+        }
+    },  
     async created() {
         
         this.id = this.$router.currentRoute.value.params.id;
-        const get = await Api().get('documentTypes/getOne/' + this.id)
+        const get = await Api().get('documentTypes/getOne/' + this.id, {                
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        })
         this.name = get.data[0].name
-        this.documents = get.data[0].documents;
-
+        this.documents = get.data[0].documents
+        this.price = get.data[0].price
     }
-}
+})
 </script>
 
 <style>

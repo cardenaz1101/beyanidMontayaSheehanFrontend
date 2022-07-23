@@ -1,0 +1,24 @@
+.bg-popup {
+    
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba($black, .5);
+    z-index: 1000;
+
+    .container-popup {
+
+        background-color: $white;
+        width: 60%;
+        min-height: 500px;
+        height: auto;
+        border-radius: 2rem;
+
+        @import "content";
+    }
+}

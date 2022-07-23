@@ -11,6 +11,8 @@
 @import "home/home.scss";
 @import "footer/footer.scss";
 @import "index/index.scss";
+@import "popup/popup.scss";
+@import "pay/pay.scss";
 
 html, body {
     width: 100%;
@@ -39,4 +41,11 @@ html, body {
     width: 100%;
     padding: 1rem;
     color: $white;
+}
+
+.form-select{
+    &:focus {
+        box-shadow: 0 0 0 0.25rem rgba($orange, .4);
+        border-color: $orange;
+    }
 }

@@ -17,7 +17,11 @@ export default {
     methods : {
         async getTypeDocuments () 
         {
-            const get = await Api().get('documentTypes/getAll');
+            const get = await Api().get('documentTypes/getAll', {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
             this.TypeDocuments = get.data;
         }
     },
