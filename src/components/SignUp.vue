@@ -5,25 +5,25 @@
     <form @submit.prevent="SignUp">
         <div class="m-0 mb-3 row">
             <div class="col-12 mb-3">
-                <input type="text" placeholder="Nombres" class="form-control" v-model="data.firstName">
+                <input type="text" :placeholder= "t('form.names', {}, { locale: lang })" class="form-control" v-model="data.firstName">
             </div>
             <div class="col-12 mb-3">
-                <input type="text" placeholder="Apellidos" class="form-control" v-model="data.lastName">
+                <input type="text" :placeholder= "t('form.lastName', {}, { locale: lang })" class="form-control" v-model="data.lastName">
             </div>
             <div class="col-6 mb-3">
-                <input type="number" placeholder="Documento" class="form-control" v-model="data.document">
+                <input type="number" :placeholder= "t('form.id', {}, { locale: lang })" class="form-control" v-model="data.document">
             </div>
             <div class="col-6 mb-3">
-                <input type="number" placeholder="Telefono" class="form-control" v-model="data.phone">
+                <input type="number" :placeholder= "t('form.phone', {}, { locale: lang })" class="form-control" v-model="data.phone">
             </div>
             <div class="col-12 mb-3">
-                <input type="email" placeholder="Correo" class="form-control" v-model="data.email">
+                <input type="email" :placeholder= "t('form.email', {}, { locale: lang })" class="form-control" v-model="data.email">
             </div>
             <div class="col-12 mb-3">
-                <input type="password" placeholder="Contraseña" class="form-control" v-model="data.password">
+                <input type="password" :placeholder= "t('form.password', {}, { locale: lang })" class="form-control" v-model="data.password">
             </div>
             <div class="mb-3">
-                <button type="submit" class="btn-orange">Registrar</button>
+                <button type="submit" class="btn-orange">{{ t("global.register", {}, { locale: lang }) }}</button>
             </div>
         </div>
     </form>
@@ -33,9 +33,18 @@
 
 // import axios from 'axios'
 import Api from '@/services/Api'
+//import { defineComponent } from '@vue/runtime-core'
+import { useI18n } from 'vue-i18n/index'
 
 export default {
     name: "SignUp",
+    props: {
+        langg: String
+    },
+    setup() {
+        const { t } = useI18n();
+        return { t }
+    },
     data() {
         return {
             error : [],
@@ -46,7 +55,8 @@ export default {
                 password: "",
                 document: "",
                 phone: "",
-            }
+            },
+            lang: this.langg
         }
     },
     methods : {

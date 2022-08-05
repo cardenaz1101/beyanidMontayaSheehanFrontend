@@ -49,3 +49,24 @@ html, body {
         border-color: $orange;
     }
 }
+
+.text-justify {
+    text-align: justify;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+
+    > img {
+        height: 600px;
+    }
+}
+
+.swiper-button-prev {
+    color: $orange !important;
+}
+
+.swiper-button-next {
+    color: $orange !important;
+}

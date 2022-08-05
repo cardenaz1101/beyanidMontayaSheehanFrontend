@@ -5,13 +5,13 @@
     <form @submit.prevent="LogIn">
         <div class="m-0 mb-3 row">
             <div class="col-12 mb-3">
-                <input type="email" placeholder="Correo" class="form-control form-control-lg" v-model="data.email">
+                <input type="email" :placeholder= "t('form.email', {}, { locale: lang })" class="form-control form-control-lg" v-model="data.email">
             </div>
             <div class="col-12 mb-3">
-                <input type="password" placeholder="Contraseña" class="form-control form-control-lg" v-model="data.password">
+                <input type="password" :placeholder= "t('form.password', {}, { locale: lang })" class="form-control form-control-lg" v-model="data.password">
             </div>
             <div class="mb-3">
-                <button type="submit" class="btn-orange">Iniciar Sesion</button>
+                <button type="submit" class="btn-orange">{{ t("global.login", {}, { locale: lang }) }}</button>
             </div>
         </div>
     </form>
@@ -20,17 +20,27 @@
 <script>
 
 import Api from '@/services/Api'
+import { defineComponent } from '@vue/runtime-core'
+import { useI18n } from 'vue-i18n/index'
 
-export default {
+export default  defineComponent({
     name: "LogIn",
+    props: {
+        langg: String
+    },
+    setup() {
+        const { t } = useI18n();
+        return { t }
+    },
     data() {
         return {
             data : {
                 email: "",
                 password: "",
             },
-            token:"",
-            error: []
+            token: {},
+            error: [],
+            lang: this.langg,
         }
     },
     methods : {
@@ -49,9 +59,8 @@ export default {
                 if (this.error.length == 0) {
                     await Api().post('users/login', this.data).then((res) => {this.token = res.data})
                     if (this.token) {
-                        localStorage.setItem('token', this.token)
+                        localStorage.setItem('token', this.token.token)
                         window.location.reload()
-                        // this.$router.push('/typeDocuments')
                     }
                 }
 
@@ -62,7 +71,7 @@ export default {
             }
         }
     }
-}
+})
 </script>
 
 <style>

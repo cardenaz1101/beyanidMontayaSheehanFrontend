@@ -2,9 +2,11 @@
     <h1 style="text-align:center">{{name}}</h1>
     <div class="row container-box-documents m-0 d-flex justify-content-center align-items-center">
         <div class="col-12 col-md-6 col-xl-4 px-4 column column-s" v-for="(document, index) of documents" :key="index">
-            <div class="type-document-box">
-                <h2 class="type-document-box-title">{{document.name}}</h2>
-            </div>
+            <a :download="document.name" :href="document.url" >
+                <div class="type-document-box">
+                    <h2 class="type-document-box-title">{{document.name}}</h2>
+                </div>
+            </a>
         </div>
         <div v-if="documents.length == 0">
             <h1 class="text-center">No hay documentos</h1>
@@ -70,7 +72,6 @@ export default defineComponent({
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
             })
-            console.log(res);
             this.paymentLink = res.data.href
         }
     },  

@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Lobby from '../views/LobbyView.vue'
-import Error from '../views/ErrorView.vue'
+import NotFound from '../views/NotFound.vue'
 import Login from '../views/LoginView.vue'
 import Us from '../views/UsView.vue'
 import typeDocuments from '../views/IndexView.vue'
@@ -14,9 +14,10 @@ const routes = [
     component: Lobby
   },
   {
-    path: '/about',
-    name: 'about',
-    component: Error
+    path: '/:pathMatch(.*)*',
+    name: 'notFound',
+    component: NotFound,
+    meta: {protectedRoute: true, protectedRouteAdd: true}
   },
   {
     path: '/login',
@@ -26,7 +27,8 @@ const routes = [
   {
     path: '/us',
     name: 'us',
-    component: Us
+    component: Us,
+    meta: {protectedRoute: true, protectedRouteAdd: true}
   },
   {
     path: '/typeDocuments',
@@ -49,10 +51,11 @@ const router = createRouter({
 
 router.beforeEach(async (to) => {
   const protectedRoute = to.matched.some(item => item.meta.protectedRoute)
+  const protectedRouteAdd = to.matched.some(item => item.meta.protectedRouteAdd)
   const token = localStorage.getItem('token');
 
-  if (protectedRoute && token === null) {
-    return { name: 'lobby' }
+  if (protectedRoute && token === null && !protectedRouteAdd) {
+    return { name: 'login' }
   } else if (!protectedRoute && token !== null) {
     return { name: 'typeDocuments' }
   }

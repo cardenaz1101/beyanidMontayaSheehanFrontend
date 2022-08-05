@@ -9,7 +9,7 @@
                     <img src="../assets/images/logo.png" class="logo" alt="">
                 </router-link>
                 <h1 class="title-lobby">¡Diligencia fácilmente <br><span>tus documentos legales!</span></h1>
-                <p>Un formulario muy intuitivo te guiará en la redacción de tus documentos</p>
+                <p>Tendras la explicación de cada documento con un solo click</p>
             </div>
         </div>
         <div class="row m-0 py-6">

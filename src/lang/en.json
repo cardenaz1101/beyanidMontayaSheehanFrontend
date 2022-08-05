@@ -5,7 +5,8 @@
     },
 
     "global": {
-        "login": "Login"
+        "login": "Login",
+        "register": "Register"
     },
 
     "header": {
@@ -19,12 +20,17 @@
         "office": "Law office"
     },
     
-    "login": {
-        "login": "Login"
-    },
-
     "popup": {
         "pay": "Make payment",
         "cancel": "Cancel purchase"
+    },
+
+    "form": {
+        "email": "Email",
+        "password": "Password",
+        "names": "Names",
+        "lastName": "Last Name",
+        "id": "Id",
+        "phone": "Phone"
     }
 }

@@ -9,13 +9,13 @@
             </div>
             <div class="row m-0 container-btn">
                 <button v-on:click="showLogIn()" :class="{'btn-login-active' : current == 1}" class="btn-login col-6">{{ t("global.login", {}, { locale: lang }) }}</button>
-                <button v-on:click="showSignUp()" :class="{'btn-login-active' : current == 2}" class="btn-login col-6">Registrarse</button>
+                <button v-on:click="showSignUp()" :class="{'btn-login-active' : current == 2}" class="btn-login col-6">{{ t("global.register", {}, { locale: lang }) }}</button>
             </div>
             <div v-if="current == 1">
-                <LogIn :key="lang"/>
+                <LogIn :key="lang" :langg="lang"/>
             </div>
             <div v-if="current == 2">
-                <SignUp :key="lang"/>
+                <SignUp :key="lang" :langg="lang"/>
             </div>
         </div>
     </div>

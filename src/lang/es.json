@@ -5,7 +5,8 @@
     },
 
     "global": {
-        "login": "Iniciar sesión"
+        "login": "Iniciar sesión",
+        "register": "Registrarse"
     },
 
     "header": {
@@ -20,12 +21,17 @@
         "office": "Oficina legal"
     },
 
-    "login": {
-        "login": "Iniciar sesión"
-    },
-
     "popup": {
         "pay": "Realizar pago",
         "cancel": "Cancelar compra"
+    },
+
+    "form": {
+        "email": "Correo",
+        "password": "Contraseña",
+        "names": "Nombres",
+        "lastName": "Apellidos",
+        "id": "Identificación",
+        "phone": "Teléfono"
     }
 }

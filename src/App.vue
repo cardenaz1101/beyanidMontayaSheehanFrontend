@@ -9,21 +9,21 @@
         </div>
         <div class="container-menu">
             <ul>
-                <li v-if="pr == 1" :key="pru">
+                <li v-if="pr == 1" :key="token">
                     <router-link class="link" to="/">{{ t("header.home", {}, { locale: lang }) }}</router-link> 
                 </li>
-                <li v-if="pr == 1" :key="pru">
+                <li v-if="pr == 2" :key="token">{{ t("header.greeting", {}, { locale: lang }) }}, Cristian</li>
+                                <li :key="token">
                     <router-link class="link" to="/us">{{ t("header.us", {}, { locale: lang }) }}</router-link>
                 </li>
-                <li v-if="pr == 1" :key="pru">
+                <li v-if="pr == 1" :key="token">
                     <router-link class="link" to="/login">{{ t("global.login", {}, { locale: lang }) }}</router-link>
                 </li>
-                <li v-if="pr == 2" :key="pru">{{ t("header.greeting", {}, { locale: lang }) }}, Cristian</li>
-                <li v-if="pr == 2" :key="pru">
+                <li v-if="pr == 2" :key="token">
                     <button class="link" v-on:click="logout()">{{ t("header.logout", {}, { locale: lang }) }}</button>
                 </li> 
                 <li>
-                    <select class="form-select form-select-sm" v-model="lang">
+                    <select class="form-select form-select-sm" v-model="lang" id="lang">
                         <option value="en">{{ t("lang.en", {}, { locale: lang }) }}</option>
                         <option value="es">{{ t("lang.es", {}, { locale: lang }) }}</option>
                     </select>
@@ -84,7 +84,7 @@ export default defineComponent({
         return {
             pr : 1,
             lang: "es",
-            pru: localStorage.getItem('token')
+            token: localStorage.getItem('token')
         }
     },
     setup() {
