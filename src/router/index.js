@@ -5,6 +5,7 @@ import Login from '../views/LoginView.vue'
 import Us from '../views/UsView.vue'
 import typeDocuments from '../views/IndexView.vue'
 import typeDocument from '../views/SingleView.vue'
+import paymentProcess from '../components/Pay.vue'
 
 
 const routes = [
@@ -41,6 +42,12 @@ const routes = [
     name: 'typeDocument',
     component: typeDocument,
     meta: {protectedRoute: true}
+  },
+  {
+    path: '/paymentProcess/',
+    name: 'paymentProcess',
+    component: paymentProcess,
+    meta: {protectedRoute: true, protectedRouteAdd: true}
   }
 ]
 
