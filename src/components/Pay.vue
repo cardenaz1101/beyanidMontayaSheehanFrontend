@@ -12,8 +12,9 @@ export default {
     async created () {
         let params =  new URLSearchParams(location.search);
         var token =  params.get('token');
+        var documentTypeId = localStorage.getItem('dti');
         console.log(token);
-        const res = await Api().get('paymentGateways/capturePayment/' + token, {
+        const res = await Api().get('paymentGateways/capturePayment/' + token + '/' + documentTypeId, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },

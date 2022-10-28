@@ -27,8 +27,9 @@
 
     </div>
     <PopUp :open="isOpen" @close="isOpen = false" :link="paymentLink" :key="paymentLink" :price="price" :name="name" :langg="lang">
-        <div class="column col-6">         
-            <img src="../assets/images/descarga.png" alt="" class="image-popup">
+        <div class="column col-6">
+            <!-- <iframe class="image-popup" src="https://player.vimeo.com/video/752215036?h=ca720ee034&title=0&byline=0&portrait=0&controls=0"></iframe> -->
+            <iframe class="image-popup" src="https://www.youtube.com/embed/ax8I9GoHnRg?rel=0&showinfo=0&controls=1&autoplay=1"></iframe>   
         </div>
     </PopUp>
 </template>
@@ -83,9 +84,12 @@ export default defineComponent({
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
         })
+
         this.name = get.data[0].name
         this.documents = get.data[0].documents
         this.price = get.data[0].price
+        localStorage.setItem('dti', get.data[0].id)
+
     }
 })
 </script>
