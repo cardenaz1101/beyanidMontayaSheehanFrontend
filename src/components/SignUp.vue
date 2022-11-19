@@ -1,7 +1,5 @@
 <template>
-    <div v-if="error.length>0" class="alert alert-danger" role="alert">
-        {{error[0]}}
-    </div>
+    <AlertAll ref="AlertAll"></AlertAll>
     <form @submit.prevent="SignUp">
         <div class="m-0 mb-3 row">
             <div class="col-12 mb-3">
@@ -35,8 +33,10 @@
 import Api from '@/services/Api'
 //import { defineComponent } from '@vue/runtime-core'
 import { useI18n } from 'vue-i18n/index'
+import AlertAll from './Alert.vue';
 
 export default {
+    components: { AlertAll },
     name: "SignUp",
     props: {
         langg: String
@@ -66,31 +66,35 @@ export default {
             this.error = []
 
             if (!this.data.firstName) {
-                this.error.push("Ingrese nombre")
+                this.error.push("nombre")
             }
             if (!this.data.lastName) {
-                this.error.push("Ingrese apellido")
+                this.error.push("apellido")
             }
             if (!this.data.document) {
-                this.error.push("Ingrese numero de documento")
+                this.error.push("identificación")
             }
             if (!this.data.phone) {
-                this.error.push("Ingrese numero celular")
+                this.error.push("teléfono")
             }
             if (!this.data.email) {
-                this.error.push("Ingrese correo")
+                this.error.push("correo")
             }
             if (!this.data.password) {
-                this.error.push("Ingrese contraseña")
+                this.error.push("contraseña")
             }
             
             if (this.error.length == 0) {
                 const res = await Api().post('users/signUp', this.data).then()
                 if (res.data.id) {
-                    this.$router.push('/login')
+                    await this.$refs.AlertAll.AlertEasy('Usuario registrado correctamente', 'success')
+                    window.location.reload()
+                    
                 }
+            } else {
+                this.$refs.AlertAll.AlertEasy('Campo ' + this.error[0] + ' vacio', 'error')
             }
-        }
+        },
     }
 }
 </script>

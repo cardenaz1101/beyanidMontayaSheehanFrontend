@@ -92,10 +92,9 @@ export default defineComponent({
         return { t }
     },
     methods: {
-        logout() {
-            localStorage.removeItem('token')
+        async logout() {
+            await localStorage.removeItem('token')
             window.location.reload()
-            // this.$router.push('/')
         }
     },
     mounted() {

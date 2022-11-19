@@ -47,7 +47,7 @@ const routes = [
     path: '/paymentProcess/',
     name: 'paymentProcess',
     component: paymentProcess,
-    meta: {protectedRoute: true, protectedRouteAdd: true}
+    meta: {protectedRoute: true, protectedRouteAdd: false}
   }
 ]
 

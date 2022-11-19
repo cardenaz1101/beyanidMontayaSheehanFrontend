@@ -11,7 +11,7 @@
         <div v-if="documents.length == 0">
             <h1 class="text-center">No hay documentos</h1>
         </div>
-        <div class="row m-0 d-flex justify-content-center align-items-center">
+        <div v-if="!this.purchased" class="row m-0 d-flex justify-content-center align-items-center">
             <div class="col-4">
                 <div class="box-create-orden">
                     <div @click="createOrden(); isOpen = true" class="link-create-orden">
@@ -57,6 +57,7 @@ export default defineComponent({
             id: null,
             name: null,
             documents: [],
+            purchased: true,
             paymentLink: null,
             price: null,
             lang: this.langg
@@ -66,7 +67,7 @@ export default defineComponent({
         PopUp
     },
     methods: {
-        async createOrden () 
+    async createOrden () 
         {
             const res =  await Api().get('paymentGateways/createPayment/'+ this.id, {
                 headers: {
@@ -85,10 +86,12 @@ export default defineComponent({
             },
         })
 
-        this.name = get.data[0].name
-        this.documents = get.data[0].documents
-        this.price = get.data[0].price
-        localStorage.setItem('dti', get.data[0].id)
+        this.purchased = get.data.purchased
+
+        this.name = get.data.documentType[0].name
+        this.documents = get.data.documentType[0].documents
+        this.price = get.data.documentType[0].price
+        localStorage.setItem('dti', get.data.documentType[0].id)
 
     }
 })
